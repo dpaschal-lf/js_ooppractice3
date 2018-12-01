@@ -3,16 +3,16 @@
 ### featureset 1
 - alter the code of the track.js object to make a horse race
 - add more horses given the examples already present
-- handleHorseUpdate
+- make the horses race and declare a winner when they get to the right!
+- handleHorseUpdate is 
+	- passed into each horse
+	- called by each horse update (every time it moves itself)
+	- is given arguments of
+		- horse: (Horse object) the horse that finished its update
+		- type: (string) the type of update ('moved or reset')
+- handleUpdates
+	- called on each update of the game
 
-	handleHorseUpdate(horse, type){
-
-	}
-	//more change here
-	handleUpdates(){
-		//put per update scripts here
-		console.log('update');
-	}
 
 #### details
 - libraries/horse.js
