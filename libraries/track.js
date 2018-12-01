@@ -30,11 +30,11 @@ class HorseTrack{
 		this.horses.push( horse );
 				//name, number, horseClass, imageFile, frameWidth, updateTime, updateCallback, index
 	}
-	// most changes should go here
+	// this function is called after a horse moves.  use it to check the status of the horse after it moves (did it win?)
 	handleHorseUpdate(horse, type){
 
 	}
-	//more change here
+	//this function is updated every 30 milliseconds by the game.  use it to update things in the game
 	handleUpdates(){
 		//put per update scripts here
 		console.log('update');
