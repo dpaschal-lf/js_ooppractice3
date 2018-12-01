@@ -6,6 +6,10 @@ class HorseTrack{
 		this.trackWidth = null;
 		this.raceTime = raceTime;
 		this.updateHorseTime = 250;
+		this.updateRaceTime = 30;
+		this.timer = null;
+		this.handleUpdates = this.handleUpdates.bind( this );
+		this.startUpdates();
 	}
 	loadHorse(name, number, horseClass, imageFile, frameWidth, frameHeight){
 		var propsToSend = {
@@ -21,17 +25,31 @@ class HorseTrack{
 		this.horses.push( horse );
 				//name, number, color, imageFile, frameWidth, updateTime
 	}
+	startUpdates(){
+		if(this.timer!==null){
+			this.stopUpdates();
+		}
+		this.timer = setInterval( this.handleUpdates, this.updateRaceTime);
+	}
+	stopUpdates(){
+		clearInterval( this.timer );
+		this.timer = null;
+	}
+	handleUpdates(){
+		//put per update scripts here
+		console.log('update');
+	}
 	startRace(){
+		//start all the horses running
 		for( var horseIndex = 0; horseIndex < this.horses.length; horseIndex++){
 			this.horses[ horseIndex ].run();
 		}
 	}
 	stopRace(){
+		//stop all the horses running
 		for( var horseIndex = 0; horseIndex < this.horses.length; horseIndex++){
 			this.horses[ horseIndex ].stop();
 		}		
 	}
-	showWinner(){
 
-	}
 }
