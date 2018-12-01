@@ -1,0 +1,28 @@
+
+
+#gameArea{
+	background-color: yellow;
+	min-height: 50vh;
+}
+.horse{
+}
+.number{
+	border-radius: 50%;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 80%;
+	font-family: arial;
+	padding: 1% 2%;
+}
+.yellowHorse .number{
+	background-color: yellow;
+	color: black;
+
+}
+.blueHorse .number{
+	background-color: cyan;
+	color: hotpink;
+
+}
