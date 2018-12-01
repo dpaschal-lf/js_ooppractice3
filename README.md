@@ -4,7 +4,7 @@
 - alter the code of the track.js object to make a horse race
 - add more horses given the examples already present
 - make the horses race and declare a winner when they get to the right!
-	- <a href="https://youtu.be/K7aG4MwUndU" target="_blank">example</a>
+	- <a href="https://youtu.be/GFICIDKiYWA" target="_blank">example</a>
 - handleHorseUpdate is 
 	- passed into each horse
 	- called by each horse update (every time it moves itself)
