@@ -3,6 +3,16 @@
 ### featureset 1
 - alter the code of the track.js object to make a horse race
 - add more horses given the examples already present
+- handleHorseUpdate
+
+	handleHorseUpdate(horse, type){
+
+	}
+	//more change here
+	handleUpdates(){
+		//put per update scripts here
+		console.log('update');
+	}
 
 #### details
 - libraries/horse.js
