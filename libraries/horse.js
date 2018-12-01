@@ -75,7 +75,7 @@ class Horse{
 	}
 	//get all properties of the horse, like name and such
 	getProperties(){
-		return this.properties
+		return this.props;
 	}
 	//get current state of horse running
 	isRunning(){
@@ -85,7 +85,7 @@ class Horse{
 	resetPosition(){
 		this.state.position.left = 0;
 		this.render();
-		this.props.updateCallback( this.props.index, 'reset' );
+		this.props.updateCallback( this, 'reset' );
 	}
 	//move the horse a distance
 	moveForward(distance){
@@ -137,7 +137,7 @@ class Horse{
 			this.state.animationFrame = 0;
 		}
 		this.render();
-		this.props.updateCallback( this.props.index, 'moved' );
+		this.props.updateCallback( this, 'moved' );
 	}	
 	initialRender(){
 		this.domElements.frame = $("<div>",{
