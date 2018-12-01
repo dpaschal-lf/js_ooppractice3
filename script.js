@@ -9,4 +9,5 @@ function startGame(){
 	//name, number, color, imageFile
 	camptownRaces.loadHorse('Chuck', 12, 'yellowHorse', 'images/horserun1.png', 64, 52);
 	camptownRaces.loadHorse('Top', 2, 'blueHorse', 'images/horserun2.png', 64, 52);
+	camptownRaces.startRace();
 }

@@ -62,7 +62,6 @@ class Horse{
 		});
 	}
 	handleUpdate(){
-		console.log('lub dub')
 		this.updateAnimation();
 	}
 	initialRender(){

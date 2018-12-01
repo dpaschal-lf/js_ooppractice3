@@ -7,9 +7,6 @@ class HorseTrack{
 		this.raceTime = raceTime;
 		this.updateHorseTime = 250;
 	}
-	showStartModal(){
-
-	}
 	loadHorse(name, number, horseClass, imageFile, frameWidth, frameHeight){
 		var propsToSend = {
 			name: name,
@@ -25,7 +22,14 @@ class HorseTrack{
 				//name, number, color, imageFile, frameWidth, updateTime
 	}
 	startRace(){
-
+		for( var horseIndex = 0; horseIndex < this.horses.length; horseIndex++){
+			this.horses[ horseIndex ].run();
+		}
+	}
+	stopRace(){
+		for( var horseIndex = 0; horseIndex < this.horses.length; horseIndex++){
+			this.horses[ horseIndex ].stop();
+		}		
 	}
 	showWinner(){
 
