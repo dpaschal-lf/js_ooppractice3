@@ -5,6 +5,8 @@
 	min-height: 50vh;
 }
 .horse{
+	position: absolute;
+	left: 0;
 }
 .number{
 	border-radius: 50%;
@@ -21,8 +23,21 @@
 	color: black;
 
 }
+.pinkHorse .number{
+	background-color: pink;
+	color: lime;
+}
 .blueHorse .number{
 	background-color: cyan;
 	color: hotpink;
-
+}
+.greenHorse .number{
+	background-color: lime;
+}
+.redHorse .number{
+	background-color: red;
+	color: white;
+}
+.whiteHorse .number{
+	background-color: white;
 }

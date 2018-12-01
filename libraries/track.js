@@ -10,6 +10,7 @@ class HorseTrack{
 		this.timer = null;
 		this.handleUpdates = this.handleUpdates.bind( this );
 		this.startUpdates();
+		this.trackDom = $("#gameArea")
 	}
 	loadHorse(name, number, horseClass, imageFile, frameWidth, frameHeight){
 		var propsToSend = {
@@ -19,11 +20,13 @@ class HorseTrack{
 			imageFile: imageFile,
 			frameWidth: frameWidth,
 			frameHeight: frameHeight,
-			updateTime: this.updateHorseTime
+			updateTime: this.updateHorseTime,
+			updateCallback: this.handleHorseUpdate,
+			index: this.horses.length
 		}
 		var horse = new Horse( propsToSend );
 		this.horses.push( horse );
-				//name, number, color, imageFile, frameWidth, updateTime
+				//name, number, horseClass, imageFile, frameWidth, updateTime, updateCallback, index
 	}
 	startUpdates(){
 		if(this.timer!==null){
@@ -38,6 +41,10 @@ class HorseTrack{
 	handleUpdates(){
 		//put per update scripts here
 		console.log('update');
+		this.horses.forEach( horse => horse.moveForward( this.getRandomNumber() ))
+	}
+	getRandomNumber(){
+		return Math.floor( Math.random() * this.trackDom.width()/400)
 	}
 	startRace(){
 		//start all the horses running
