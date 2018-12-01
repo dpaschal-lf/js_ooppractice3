@@ -10,7 +10,9 @@ class HorseTrack{
 		this.timer = null;
 		this.handleUpdates = this.handleUpdates.bind( this );
 		this.startUpdates();
-		this.trackDom = $("#gameArea")
+		this.trackDom = $("#gameArea");
+		this.trackWidth = this.trackDom.width();
+		this.handleHorseUpdate = this.handleHorseUpdate.bind(this);
 	}
 	loadHorse(name, number, horseClass, imageFile, frameWidth, frameHeight){
 		var propsToSend = {
@@ -28,6 +30,17 @@ class HorseTrack{
 		this.horses.push( horse );
 				//name, number, horseClass, imageFile, frameWidth, updateTime, updateCallback, index
 	}
+	handleHorseUpdate(horse, type){
+		if(type==='moved'){
+			var pos = horse.getPosition();
+			var props = horse.getProperties();
+			if(pos.left > this.trackWidth-64){
+				alert( `${props.name} (${props.number}) won!`);
+				this.horses.forEach( horse => horse.stop())
+				this.stopUpdates();
+			}
+		}
+	}
 	startUpdates(){
 		if(this.timer!==null){
 			this.stopUpdates();
@@ -44,7 +57,7 @@ class HorseTrack{
 		this.horses.forEach( horse => horse.moveForward( this.getRandomNumber() ))
 	}
 	getRandomNumber(){
-		return Math.floor( Math.random() * this.trackDom.width()/400)
+		return Math.floor( Math.random() * this.trackDom.width()/100)
 	}
 	startRace(){
 		//start all the horses running
