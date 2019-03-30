@@ -8,8 +8,9 @@ class HorseTrack{
 		this.updateHorseTime = 250;
 		this.updateRaceTime = 30;
 		this.timer = null;
+		this.winnerCount = 5;
 		this.handleUpdates = this.handleUpdates.bind( this );
-		this.startUpdates();
+		//this.startUpdates();
 		this.trackDom = $("#gameArea");
 		this.trackWidth = this.trackDom.width();
 		this.handleHorseUpdate = this.handleHorseUpdate.bind(this);
@@ -27,6 +28,7 @@ class HorseTrack{
 			index: this.horses.length
 		}
 		var horse = new Horse( propsToSend );
+		this.winners = [];
 		this.horses.push( horse );
 				//name, number, horseClass, imageFile, frameWidth, updateTime, updateCallback, index
 	}
@@ -35,9 +37,15 @@ class HorseTrack{
 			var pos = horse.getPosition();
 			var props = horse.getProperties();
 			if(pos.left > this.trackWidth-64){
-				alert( `${props.name} (${props.number}) won!`);
-				this.horses.forEach( horse => horse.stop())
-				this.stopUpdates();
+				this.winners.push( `horse ${props.name} (${props.number}) got ${this.winners.length+1} place\n` )
+				//alert( `${props.name} (${props.number}) won!`);
+				horse.stop();
+				if(this.winners.length===this.winnerCount){
+					this.horses.forEach( horse => horse.stop())
+					this.stopUpdates();	
+					alert(this.winners.join(''))		
+				}
+
 			}
 		}
 	}
@@ -45,6 +53,7 @@ class HorseTrack{
 		if(this.timer!==null){
 			this.stopUpdates();
 		}
+
 		this.timer = setInterval( this.handleUpdates, this.updateRaceTime);
 	}
 	stopUpdates(){
@@ -57,13 +66,24 @@ class HorseTrack{
 		this.horses.forEach( horse => horse.moveForward( this.getRandomNumber() ))
 	}
 	getRandomNumber(){
-		return Math.floor( Math.random() * this.trackDom.width()/100)
+		return Math.floor( Math.random() * this.trackDom.width()/50)
+	}
+	randomizeHorses(){
+		const newArray = [];
+		while(this.horses.length){
+			let randomIndex = Math.floor(Math.random() * this.horses.length);
+			newArray.push( this.horses.splice(randomIndex, 1)[0]);
+
+		}
+		this.horses = newArray;
 	}
 	startRace(){
 		//start all the horses running
+		this.horses.reverse();
 		for( var horseIndex = 0; horseIndex < this.horses.length; horseIndex++){
 			this.horses[ horseIndex ].run();
 		}
+		this.startUpdates()
 	}
 	stopRace(){
 		//stop all the horses running

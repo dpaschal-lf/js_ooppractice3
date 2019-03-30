@@ -1,12 +1,26 @@
-
+body{
+	margin: 0;
+}
 
 #gameArea{
 	background-color: yellow;
-	min-height: 50vh;
+	min-height: 100vh;
 }
 .horse{
+	position: relative;
+	left: 0;
+}
+.horseContainer{
+	width: 100%;
+	border-top: 1px solid black;
+}
+.horseContainer:nth-child(even){
+	background-color: rgba(0,0,0,.2);
+}
+.horseLabel{
 	position: absolute;
 	left: 0;
+	top: 0;
 }
 .number{
 	border-radius: 50%;
@@ -41,3 +55,25 @@
 .whiteHorse .number{
 	background-color: white;
 }
+.verdantHorse .number{
+	background-color: green;
+	color: white;
+}
+.tealHorse .number{
+	background-color: teal;
+	color: red;
+}
+.purupleHorse .number{
+	background-color: purple;
+	color: yellow;
+}
+.greyHorse .number{
+	background-color: grey;
+	color: black;
+	font-weight: bold;
+}
+.blackHorse .number {
+	background-color: black;
+	color: white;
+}
+

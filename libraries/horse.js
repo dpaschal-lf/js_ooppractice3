@@ -45,9 +45,11 @@ class Horse{
 		//number: the number circle on the horse
 		//tester: tracking pixel on the horse to tell when it is loaded
 		this.domElements = {
+			container: null,
 			frame: null,
 			number: null,
-			tester: null
+			tester: null,
+			horseLabel: null
 		};
 		//used to track the timer that updates this horse
 		this.timer = null;
@@ -57,13 +59,14 @@ class Horse{
 		//testing image to see when the dom is loaded so we know when to sample size
 		this.sampleImage();
 		//start the horse update tracker
-		this.startUpdates();
+		//this.startUpdates();
 		//put the initial dom elements of the horse onto the page
 		this.initialRender();
 	}
 	//make the horse start its running animation
 	run(){
 		this.state.running = true;
+		this.startUpdates();
 	}
 	//make the horse stop its running animation
 	stop(){
@@ -140,6 +143,16 @@ class Horse{
 		this.props.updateCallback( this, 'moved' );
 	}	
 	initialRender(){
+		this.domElements.container = $("<div>",{
+			'class': 'horseContainer'
+		})
+		this.domElements.label = $("<div>",{
+			'class': 'horseLabel',
+			text: this.props.name,
+			css: {
+				left: '0px',
+			}
+		})
 		this.domElements.frame = $("<div>",{
 			'class': 'horse '+this.props.additionalClass,
 			css: {
@@ -159,9 +172,11 @@ class Horse{
 			on: {
 				load: this.domLoaded
 			}
-		})
+		});
 		this.domElements.frame.append(this.domElements.number, this.domElements.tester);
-		$("#gameArea").append(this.domElements.frame)
+		this.domElements.container.append(this.domElements.label,this.domElements.frame);
+		$("#gameArea").append(this.domElements.container);
+		this.domElements.label.css('top', this.domElements.frame.position().top+'px')
 	}
 	render(){
 		this.domElements.frame.css('background-position', this.state.animationFrame * this.props.frameWidth)
